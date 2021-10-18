@@ -1,7 +1,6 @@
 import math
 from fractions import Fraction
 
-#insert a numerator
 num= int(input("Enter a numerator: "))
 while True:
     if (num>0):
@@ -9,23 +8,24 @@ while True:
     else:
         num= int(input("Numerator must be > 0 integer. Please enter another number : "))
         continue
-#insert a denominator
-den= int(input("Enter a Denominator: "))
+
+den= int(input("Enter a denominator: "))
 while True:
     if (den>0):
         break
     else:
         den= int(input("Denominator must be > 0 integer. Please enter another number : "))
         continue
-#math modules used
-gcd= math.gcd(num,den)
-w= (num//den)
-r= num%den
-numgcd= num//gcd
-dgcd = den//gcd
-gcdnd = math.gcd(numgcd,dgcd)
 
-#If it is a Proper fraction + can be reduced or not
+#Formula
+gcd= math.gcd(num,den)
+x= (num//den)
+y= num%den
+numgcd= num//gcd
+dengcd = den//gcd
+gcdnumden = math.gcd(numgcd,dengcd)
+
+#Proper, whether reduce
 while True:
     if (num<den):
         print(num,"/",den, "is a proper fraction.")
@@ -35,21 +35,21 @@ while True:
         else:
             print("This proper fraction cannot be reduced any further.")
             break
-#If it is an improper fraction + mixed number + whole number + can be reduced or not
+#Improper,mixed, whole, whether reduce
     if (num>den):
         print(num,"/",den, "is a improper fraction.")
         if gcd==1 and den>1:
             print("This improper fraction cannot be reduced any further.")
-            print("The mixed number is ",w,"and", r,"/",den)
+            print("The mixed number is ",x,"and", y,"/",den)
             break
         if gcd==1:  
             print("This improper fraction cannot be reduced any further.")
-            print("The whole number is ",w)
+            print("The whole number is ",x)
             break
-        if gcdnd==1 and dgcd>1:
+        if gcdnumden==1 and dengcd>1:
             print("This improper fraction can be reduced to: ",Fraction(num,den))
-            print("The mixed number is ",w,"and",numgcd-(w*dgcd),"/",(dgcd))
+            print("The mixed number is ",x,"and",numgcd-(x*dengcd),"/",(dengcd))
             break
         else: 
-            print("The improper fraction can be reduced further to become: ",numgcd,"/",(dgcd),"the whole number is ",w)
+            print("The improper fraction can be reduced further to become: ",numgcd,"/",(dengcd),"the whole number is ",x)
             break
